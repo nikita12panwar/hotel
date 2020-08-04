@@ -1,0 +1,323 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Booking</title>
+    <link href="{% static 'images/logo-dark1.png' %}" rel="icon" type="image/jpg">
+
+    <!-- google fonts -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Ubuntu:wght@300&display=swap" rel="stylesheet"> -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;900&family=Ubuntu:wght@300&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;800&family=Oswald:wght@300;400&family=Playfair+Display:ital,wght@0,600;1,600&family=Raleway:wght@500&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <!-- Font Awsome -->
+    <script src="https://kit.fontawesome.com/e78c468b88.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap Script  -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <style>
+        /* for containers */
+        .container {
+            margin: 20px auto;
+            padding: 0;
+            margin-top: 0;
+
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 2px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .booking-section {
+            margin-top: 0;
+            background-image: url({% static 'images/sunset.jpg' %});
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.9;
+            padding: 3%;
+        }
+
+        .container .icon {
+            background-image: url('https://res.cloudinary.com/dw369yzsh/image/upload/v1483213851/icons_wykol9.png');
+            width: 27px;
+            height: 30px;
+        }
+
+        /*buttons*/
+        .container button {
+            text-transform: uppercase;
+            border: none;
+            background: rgba(32, 31, 31, 0.938);
+            /* background-color: #fb6362; */
+            color: #fff;
+            margin: 0 auto;
+            display: block;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.8);
+            border-radius: 4px;
+            font-size: 15px;
+            font-family: "Gotham Book", sans-serif;
+            cursor: pointer;
+            -webkit-transition: background-color 0.2s;
+            -moz-transition: background-color 0.2s;
+            -ms-transition: background-color 0.2s;
+            -o-transition: background-color 0.2s;
+            transition: background-color 0.2s;
+        }
+
+        .container button:hover {
+            background-color: #fc8381;
+        }
+
+        .container button:active {
+            background-color: #f98584;
+            position: relative;
+            top: 2px;
+        }
+
+        button.button-big {
+            width: 296px;
+            height: 58px;
+        }
+
+        /*inputs*/
+        .input-text {
+            border-radius: 2px;
+            background-color: #f4f4f4;
+            box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+            padding-left: 11px;
+            position: relative;
+            height: 46px;
+            line-height: 46px;
+
+        }
+
+        .input-text .icon {
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .input-text input,
+        .input-text textarea,
+        .div-file label {
+            border: none;
+            background-color: transparent;
+            font-family: "Gotham Light", sans-serif;
+            color: #999999;
+        }
+
+        /*placeholders hell*/
+        .container .input-text input::-webkit-input-placeholder,
+        .container .input-text textarea::-webkit-input-placeholder {
+            color: #999999;
+            font-family: "Gotham Light", sans-serif;
+            font-size: 14px;
+        }
+
+        .container .input-text input::-moz-placeholder,
+        .container .input-text textarea::-moz-placeholder {
+            color: #999999;
+            font-family: "Gotham Light", sans-serif;
+            font-size: 14px;
+        }
+
+        .container .input-text input:-moz-placeholder,
+        .container .input-text textarea:-moz-placeholder {
+            color: #999999;
+            font-family: "Gotham Light", sans-serif;
+            font-size: 14px;
+        }
+
+        .container .input-text input:-ms-input-placeholder,
+        .container .input-text textarea:-ms-input-placeholder {
+            color: #999999;
+            font-family: "Gotham Light", sans-serif;
+            font-size: 14px;
+        }
+
+
+        #overlay {
+            z-index: 3;
+            position: fixed;
+            background-color: #000;
+            opacity: 0.8;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        /***** Booking form *****/
+
+        .booking {
+            width: 500px;
+            height: 626px;
+
+        }
+
+        .is-sent {
+            animation: launch 1s ease-in-out forwards
+        }
+
+        @keyframes launch {
+            0% {
+                transform: translateY(0);
+            }
+
+            10%,
+            15% {
+                transform: translateY(20px);
+            }
+
+            100% {
+                transform: translateY(-700px);
+            }
+
+        }
+
+        .booking .header {
+            width: 100%;
+            height: 220px;
+
+            background-image: url('{% static 'images/sunset.jpg' %}');
+            position: relative;
+            color: #fff;
+            background-size: cover;
+            opacity: 1;
+            /* background-attachment: fixed;
+            
+            background-position: center;*/
+        } 
+    </style>
+</head>
+
+<body>
+
+    <section id="title">
+        <div class="container-fluid">
+            <!-- Nav Bar -->
+            <nav class="navbar navbar-expand-lg navbar-dark">
+
+                <img class="navbar-brand" src="{% static 'images/logo-dark.png' %}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto ">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{% url 'adsignup' %}">Admin</a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+
+        </div>
+    </section>
+
+    <section id="book">
+        <div class="booking-section">
+            <div class="book container-fluid">
+                <div id="overlay"></div>
+
+                <form action="" class="container booking" name="booking" method="post">
+                    {% csrf_token %}
+                    <div class="header">
+                        <div>
+                            <h2>Hotel Raj Palace</h2>
+                            <div class="icon"></div>
+                            <p>Delhi, India</p>
+                        </div>
+                    </div>
+
+                    <div class="dates" data-type="none">
+                        <!-- <div class="col-6"> -->
+                        <label for="checkin">Check in</label>
+                        <!-- </div> -->
+                        <div class="input-text ">
+                            <input type="date" value="9 July, 2016" id="check_in" name="check_in">
+                            <!-- <div class="icon pop-up"></div> -->
+                        </div>
+
+                        <!-- <div class="col-6"> -->
+                        <label for="checkout">Check out</label>
+                        <!-- </div> -->
+                        <div class="input-text">
+                            <input type="date" value="16 July, 2016" id="check_out" name="check_out">
+                            <!-- <div class="icon pop-up"></div> -->
+                        </div>
+
+                    </div>
+
+                    <ul class="persons">
+                        <li>
+                            <label>Adults</label>
+                            <div class="input-text">
+                                <select name="adult" id="adult">
+                                    <option value="1">1</option>
+                                    <option value="2" selected="selected">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                                <div class="icon"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <label>Children</label>
+                            <div class="input-text">
+                                <select name="child" id="child">
+                                    <option value="0">0</option>
+                                    <option value="1" selected="selected">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                                <div class="icon"></div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <button class="button-big btn btn-block btn-warning" id="search" type="submit" name="search">
+                        <div class="icon"></div>Search rooms
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+
+</html>

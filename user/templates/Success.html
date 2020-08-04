@@ -1,0 +1,54 @@
+{% load static %}
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+  </head>
+    <style>
+      body {
+        text-align: center;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        padding: 40px 0;
+        background-image: url({% static 'images/sunset.jpg' %});
+        background-attachment: fixed;
+        background-size:cover;
+      }
+        h1 {
+          color: #1a1a1a;
+          font-weight: 900;
+          font-size: 40px;
+          margin-bottom: 10px;
+        }
+        p {
+          color: #404F5E;
+          font-size:20px;
+          margin: 0;
+        }
+      i {
+        color: #1a1a1a;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left:-15px;
+      }
+      .card-success {
+        background: white;
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+      }
+      .success{
+        border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;
+      }
+    </style>
+    <body>
+      <div class="card-success">
+      <div class="success" >
+        <i class="checkmark">✓</i>
+      </div>
+        <h1>Success</h1> 
+        <p>We received your booking request;<br/> we'll be in touch shortly!</p>
+        <h3>Go back to <a href="{% url 'home' %}" style="text-decoration: none;">Home</a>.</h3>
+      </div>
+    </body>
+</html>

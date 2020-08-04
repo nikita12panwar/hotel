@@ -1,0 +1,205 @@
+{% load mathfilters %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Hotel Raj</title>
+    <!-- <link href="{% static 'images/brand.jpg' %}" rel="icon" type="image/jpg"> -->
+
+    <!-- google fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;900&family=Ubuntu:wght@300&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;800&family=Oswald:wght@300;400&family=Playfair+Display:ital,wght@0,600;1,600&family=Raleway:wght@500&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+
+    <!-- Bootstrap Script  -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <!-- Font Awsome -->
+    <script src="https://kit.fontawesome.com/e78c468b88.js" crossorigin="anonymous"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <style>
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            z-index: 1;
+        }
+
+        body {
+            /* background-color: rgb(27, 27, 27); */
+            /* background: #f5cb87; */
+            background-image: url({% static 'images/sunset.jpg' %});
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #888;
+            font: 'Open Sans';
+            font-size: 100%;
+            overflow: hidden;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+        @media (max-width: 450px) {
+            body {
+                background: #EBF3F5;
+                overflow: scroll;
+            }
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: rgb(31, 31, 31);
+        }
+
+        
+
+        input {
+            padding: 15px 10px;
+            border: none;
+            margin-bottom: 20px;
+            border-radius: 3px;
+            box-shadow: 1px 3px 20px rgba(17, 17, 17, 0.1);
+            width: 100%;
+            height: 45px;
+            outline: #8DFEE1;
+        }
+
+        input[type=date]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            display: none;
+        }
+
+
+        input[type="date"]:webkit-inner-spin-button {
+            display: none;
+        }
+
+        label {
+            padding-bottom: 15px;
+            display: inline;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .room-img-fare {
+            height: 90px;
+            width: 140px;
+            border-radius: 3%;
+            float: right;
+            margin-top: 5%;
+        }
+                
+        
+    </style>
+</head>
+
+
+<body>
+
+
+    <div class="container-fluid">
+        <!-- Nav Bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+
+            <img class="navbar-brand" src="{% static 'images/logo-dark.png' %}">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto ">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'adsignup' %}">Admin</a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- <div class="container-fluid"> -->
+    <div class="main-container container-fluid">
+        <div class="diamond"></div>
+        <div class="form-wrap">
+            {% with no_of_days=booking.check_out|sub:booking.check_in %}
+            {% with day_cost=no_of_days.days|mul:room.charges %}
+            <form action="">
+                <div class="location">
+                    <h2 for="location">Booking Summary</h2><br />
+                    <div class="hotel-detail">
+                        <img src="{{ room.image.url }}" name="room" class="room-img-fare" /><br />
+                        <h4>{{ room.name }}</h4>
+                        <p>{{ booking.adult }} person and {{ booking.child }} kid.</p>
+                        <p>{{ no_of_days.days }} nights.</p>
+                        <br>
+                    </div>
+                </div>
+                <hr>
+                <div class="guests row">
+                    <div class="col-6">
+                        <p>CheckIn:</p>
+                        <h5>{{ booking.check_in }},</h5>
+                        <p> 3:00PM</p>
+                    </div>
+                    <div class="col-6">
+                        <p>CheckOut:</p>
+                        <h5>{{ booking.check_out }},</h5>
+                        <p> 11:00AM</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="dates">
+                    <div class="arrival">
+                        <label> Total Amount to pay : {{day_cost}}</label>
+
+                    </div>
+                </div>
+
+                <a href="{% url 'success' %}" ><button class="btn btn-book" type="button">Confirm Booking</button></a>
+
+            </form>
+
+
+            {% endwith %}
+            {% endwith %}
+        </div>
+
+    </div>
+
+</body>
+
+</html>

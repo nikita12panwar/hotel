@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Rooms</title>
+    <link href="{% static 'images/logo-dark1.png' %}" rel="icon" type="image/jpg">
+
+    <!-- google fonts -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Ubuntu:wght@300&display=swap" rel="stylesheet"> -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;900&family=Ubuntu:wght@300&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;800&family=Oswald:wght@300;400&family=Playfair+Display:ital,wght@0,600;1,600&family=Raleway:wght@500&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <!-- Font Awsome -->
+    <script src="https://kit.fontawesome.com/e78c468b88.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap Script  -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <style>
+        .login-page {
+            margin: 0;
+            padding: 1rem;
+            background-image:url({% static 'images/sunset.jpg' %});
+            opacity: 0.9;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .card-btn:hover{
+        background-color:#fc8381;
+        border: 0;
+        
+        }
+        .room-info{
+            padding: 3% 5% 0 3%;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container-fluid">
+        <!-- Nav Bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+
+            <img class="navbar-brand" src="{% static 'images/logo-dark.png' %}">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto ">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'adsignup' %}">Admin</a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- <div class="container-fluid"> -->
+
+
+
+        <section id="room">
+            <div class="login-page">
+
+            {% block page_content %}
+            <!-- <h1 class="heading text-center"> Room Availability</h1> -->
+        
+            <div class="room-section">
+              {% for ro in room %}
+              {% if ro.capacity == booking.adult|add:booking.child %}
+              <div class="room row">
+                <div class="room-image col-xl-5 col-lg-6 col-md-6 col-sm-12">
+                    {% if ro.image %}
+                    <img class="room-img-home" src="{{ ro.image.url }}" alt="{{ ro.name }}">
+                    {% endif %}
+                  <!-- style="@media only screen and (min-width: 463px){.room-img{max-height:284px;max-width:400px;}}
+                      @media only screen and (max-width: 463px){.room-img{max-width: 200px; max-height: 125px;}}"> -->
+                </div>
+                <div class="room-info text-left col-xl-7 col-lg-6 col-md-6 col-sm-12">
+                  <h2 class="room-name">{{ ro.name }}</h2>
+                  <h1 class="room-charge">
+                    <p>Rs.</p>{{ ro.charges }}<p>/night</p>
+                  </h1>
+                  <h6>Size : {{ ro.size }}</h6>
+                  <h6>Capacity : {{ ro.capacity }}</h6>
+                  <p>
+                  <h6>Services : {{ ro.service }}</h6>
+                  </p>
+                  <h6>Staying Period : {{ no_of_days.days }} night/s</h6>
+                  <a class="btn btn-dark card-btn " href="{% url 'fare' ro.pk  %}">Book Now</a>
+                </div>
+              </div>
+              {% endif %}
+              {% endfor %}
+            </div>
+        
+
+        
+        
+            {% endblock %}
+            </div>
+          </section>
+</body>
+
+</html>
